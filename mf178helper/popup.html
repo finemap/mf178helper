@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>蜜蜂接单提醒</title>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      width: 250px; /* 稍微增加宽度以适应超链接 */
+      padding: 15px;
+      text-align: center;
+      background-color: #f4f7f6;
+      border-radius: 8px;
+    }
+    h2 {
+      color: #333;
+      font-size: 1.2em;
+      margin-bottom: 15px;
+    }
+    .hidden {
+      display: none; /* 默认隐藏的样式 */
+    }
+    /* 非目标网站提示区域 */
+    #off-target-area {
+      padding: 10px;
+      background-color: #ffe0b2; /* 淡橙色背景 */
+      border: 1px solid #ffb300;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+    #off-target-area p {
+      color: #555;
+      font-size: 0.95em;
+      margin-bottom: 8px;
+    }
+    #off-target-area a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    #off-target-area a:hover {
+      text-decoration: underline;
+    }
+
+    /* 目标网站控制区域 */
+    #on-target-area {
+      /* 样式保持不变 */
+    }
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+    .toggle-container label {
+      font-size: 1em;
+      color: #555;
+      margin-right: 10px;
+    }
+    /* 样式化开关 */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 20px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 20px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #4CAF50; /* 绿色 */
+    }
+    input:focus + .slider {
+      box-shadow: 0 0 1px #4CAF50;
+    }
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+    #status {
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body>
+  <h2>蜜蜂接单提醒</h2>
+
+  <div id="off-target-area" class="hidden">
+    <p>当前页面不是订单提醒目标网址。</p>
+    <p>请点击前往目标网址：</p>
+    <a href="https://h5.feedov.com/#/subpages/tuidanOrder/tuidanOrder" id="targetLink" target="_blank">前往订单页面</a>
+  </div>
+
+  <div id="on-target-area" class="hidden">
+    <div class="toggle-container">
+      <label for="toggleSwitch">开启/关闭提醒:</label>
+      <label class="switch">
+        <input type="checkbox" id="toggleSwitch">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <p id="status">监测状态：</p>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
